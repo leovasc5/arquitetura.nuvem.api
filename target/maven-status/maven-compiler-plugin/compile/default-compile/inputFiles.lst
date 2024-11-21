@@ -1,0 +1,12 @@
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/controller/EntregaController.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/entity/Entrega.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/entity/Cliente.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/repository/EntregaRepository.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/repository/EventoRastreamentoRepository.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/repository/ClienteRepository.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/data/EntregaDetalhadaDTO.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/entity/EventoRastreamento.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/Application.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/service/EntregaService.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/data/EntregaDTO.java
+/home/consultor/Projetos/academico/arquitetura.nuvem/src/main/java/com/sptech/arquitetura/nuvem/data/ClienteDTO.java
