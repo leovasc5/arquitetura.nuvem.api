@@ -1,7 +1,6 @@
 package com.sptech.arquitetura.nuvem.controller;
 
 import com.sptech.arquitetura.nuvem.data.EntregaDTO;
-import com.sptech.arquitetura.nuvem.data.EntregaDetalhadaDTO;
 import com.sptech.arquitetura.nuvem.service.EntregaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +21,15 @@ public class EntregaController {
         return ResponseEntity.ok(entregas);
     }
 
-    @GetMapping("/cliente/{clienteId}")
-    public ResponseEntity<List<EntregaDTO>> listarEntregasPorCliente(@PathVariable Long clienteId) {
-        List<EntregaDTO> entregas = entregaService.listarEntregasPorCliente(clienteId);
+    @GetMapping("/cliente/{nomeCliente}")
+    public ResponseEntity<List<EntregaDTO>> listarEntregasPorCliente(@PathVariable String nomeCliente) {
+        List<EntregaDTO> entregas = entregaService.listarEntregasPorCliente(nomeCliente);
         return ResponseEntity.ok(entregas);
     }
 
     @GetMapping("/{numeroRastreamento}")
-    public ResponseEntity<EntregaDetalhadaDTO> buscarEntregaPorNumeroRastreamento(@PathVariable String numeroRastreamento) {
-        EntregaDetalhadaDTO entrega = entregaService.buscarEntregaPorNumeroRastreamento(numeroRastreamento);
+    public ResponseEntity<List<EntregaDTO>> buscarEntregaPorNumeroRastreamento(@PathVariable String numeroRastreamento) {
+        List<EntregaDTO> entrega = entregaService.buscarEntregaPorNumeroRastreamento(numeroRastreamento);
         return ResponseEntity.ok(entrega);
     }
 }

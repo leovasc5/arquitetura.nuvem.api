@@ -31,18 +31,17 @@ public class EntregaService {
                 .collect(Collectors.toList());
     }
 
-    public List<EntregaDTO> listarEntregasPorCliente(Long clienteId) {
-        Optional<Cliente> cliente = clienteRepository.findById(clienteId);
-        return cliente.map(c -> entregaRepository.findByClienteId(clienteId).stream()
-                        .map(this::toEntregaDTO)
-                        .collect(Collectors.toList()))
-                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+    public List<EntregaDTO> listarEntregasPorCliente(String nomeCliente) {
+        List<Entrega> entregas = entregaRepository.findByClienteNomeContaining(nomeCliente);
+        return entregas.stream().map(this::toEntregaDTO).toList();
     }
 
-    public EntregaDetalhadaDTO buscarEntregaPorNumeroRastreamento(String numeroRastreamento) {
-        Entrega entrega = entregaRepository.findByNumeroRastreamento(numeroRastreamento)
-                .orElseThrow(() -> new IllegalArgumentException("Entrega não encontrada"));
-        return toEntregaDetalhadaDTO(entrega);
+    public List<EntregaDTO> buscarEntregaPorNumeroRastreamento(String numeroRastreamento) {
+        List<Entrega> entregas = entregaRepository.findByNumeroRastreamentoContaining(numeroRastreamento);
+
+        return entregas.stream()
+                .map(this::toEntregaDTO)
+                .collect(Collectors.toList());
     }
 
     private EntregaDTO toEntregaDTO(Entrega entrega) {

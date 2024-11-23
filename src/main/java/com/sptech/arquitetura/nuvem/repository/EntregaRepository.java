@@ -8,7 +8,9 @@ import java.util.Optional;
 
 public interface EntregaRepository extends CrudRepository<Entrega, Long> {
 
-    Optional<Entrega> findByNumeroRastreamento(String numeroRastreamento);
+    List<Entrega> findByClienteNomeContaining(String nome);
+
+    List<Entrega> findByNumeroRastreamentoContaining(String numeroRastreamento);
 
     List<Entrega> findByClienteId(Long id);
 
