@@ -1,5 +1,5 @@
 # Usa uma imagem do Maven para compilar o projeto
-FROM maven:3.8.7-openjdk-17 AS build
+FROM maven:3.8.8-eclipse-temurin-17 AS build
 
 # Define o diretório de trabalho para o build
 WORKDIR /app
