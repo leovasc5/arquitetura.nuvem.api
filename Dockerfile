@@ -1,29 +1,30 @@
-# Etapa 1: Construir o projeto
-FROM maven:3.8.4-openjdk-17 AS builder
+# Usa uma imagem do Maven para compilar o projeto
+FROM maven:3.8.7-openjdk-17 AS build
 
-# Define o diretório de trabalho dentro do contêiner
+# Define o diretório de trabalho para o build
 WORKDIR /app
 
-# Copia os arquivos do projeto para o contêiner
-COPY . .
+# Copia o arquivo pom.xml e instala as dependências
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Executa o Maven para compilar e empacotar o projeto como um arquivo .jar
-RUN mvn clean package -DskipTests
+# Copia o código fonte do projeto
+COPY src ./src
 
-# Etapa 2: Preparar a imagem para execução
-FROM openjdk:17-jdk-slim
+# Compila o projeto e gera o arquivo JAR
+RUN mvn package -DskipTests
 
-# Define o diretório de trabalho
+# Usa uma imagem mais leve do OpenJDK para executar o JAR gerado
+FROM openjdk:17-jdk
+
+# Define o diretório de trabalho no container final
 WORKDIR /app
 
-# Copia o .jar gerado na etapa anterior para a imagem final
-COPY --from=builder /app/target/arquitetura.nuvem.jar app.jar
+# Copia o JAR gerado para o container final
+COPY --from=build /app/target/arquitetura.nuvem-0.0.1-SNAPSHOT.jar /app/arquitetura.nuvem-0.0.1-SNAPSHOT.jar
 
-# Define a variável para alterar o perfil de execução, se necessário
-ENV SPRING_PROFILES_ACTIVE=prod
+# Expõe a porta que a aplicação irá utilizar
+EXPOSE 8090
 
-# Expõe a porta que a aplicação Spring Boot usa
-EXPOSE 8081
-
-# Comando para executar o .jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Comando para rodar o arquivo JAR
+ENTRYPOINT ["java", "-jar", "/app/arquitetura.nuvem-0.0.1-SNAPSHOT.jar", "--server.port=8090"]
