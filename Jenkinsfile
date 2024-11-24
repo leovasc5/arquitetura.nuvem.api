@@ -36,7 +36,7 @@ pipeline {
             steps {
                 script {
                     // Itera pelos hosts e sobe novos contêineres com a nova imagem
-                    sh "docker run -p 8090:8090 -d --name back-end --restart always ${DOCKER_IMAGE}:${DOCKER_TAG}"
+                    sh "docker run -p 8090:8090 -d --name back-end --restart always -v ${DOCKER_IMAGE}:${DOCKER_TAG} > /var/log/backend.log 2>&"
                 }
             }
         }
