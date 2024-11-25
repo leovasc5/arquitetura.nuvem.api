@@ -35,8 +35,10 @@ pipeline {
         stage('Deploy and Restart Containers') {
             steps {
                 script {
-                    // Itera pelos hosts e sobe novos contêineres com a nova imagem
-                    sh "docker run -p 8090:8090 -d --name back-end --restart always -v ${DOCKER_IMAGE}:${DOCKER_TAG} > /var/log/backend.log 2>&1"
+                    // Rodar o contêiner e redirecionar os logs para o arquivo
+                    sh """
+                        docker run -p 8090:8090 -d --name back-end --restart always ${DOCKER_IMAGE}:${DOCKER_TAG} > /var/log/backend.log 2>&1
+                    """
                 }
             }
         }
