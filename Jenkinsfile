@@ -36,14 +36,7 @@ pipeline {
             steps {
                 script {
                     // Itera pelos hosts e sobe novos contêineres com a nova imagem
-                    sh """
-                    docker run -p 8090:8090 -d --name back-end --restart always \
-                    --log-driver=awslogs \
-                    --log-opt awslogs-group=backend-logs \
-                    --log-opt awslogs-stream=meu-container-backend \
-                    --log-opt awslogs-region=us-east-1 \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG}
-                    """
+                    sh "docker run -p 8090:8090 -d --name back-end --restart always ${DOCKER_IMAGE}:${DOCKER_TAG}"
                 }
             }
         }
