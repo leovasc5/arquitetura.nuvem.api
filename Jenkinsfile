@@ -39,7 +39,7 @@ pipeline {
                     sh """
                     docker run -p 8090:8090 -d --name back-end --restart always \
                     -v /var/log:/var/log \
-                    ${DOCKER_IMAGE}:${DOCKER_TAG} > /var/log/backend.log 2>&1
+                    ${DOCKER_IMAGE}:${DOCKER_TAG}
                     """
                 }
             }
